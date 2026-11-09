@@ -141,7 +141,7 @@
     resumen_en: 'We help self-employed workers who lost their equipment and work tools in the double earthquake so they can get back to work.',
     tarjeta: 'Ayudamos a trabajadores autónomos que hayan perdido sus equipos y herramientas de trabajo tras el doble terremoto para que puedan recuperar su autonomía.',
     tarjeta_en: 'We help self-employed workers who lost their equipment and work tools in the double earthquake so they can regain their independence.',
-    estado: 'Próximamente', estado_en: 'Coming soon',
+    estado: 'En curso', estado_en: 'In progress',
     ubicacion: 'La Guaira', fecha: '', categoria: '🚀 Volver a Trabajar', meta: 0, gastado: 362, actualizado: '',
     foto: 'proyectos/volver-a-trabajar/portada.jpg', detalle: [
       { tipo: 'aporte', titulo: 'Dona a NEXOS', titulo_en: 'Donate to NEXOS', grupo: 'Donar', grupo_en: 'Donate', enlace: 'donar',
