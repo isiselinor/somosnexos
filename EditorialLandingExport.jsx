@@ -577,7 +577,6 @@ function EditorialLandingExport() {
       <section style={{ padding:'clamp(56px,8vw,72px) 0' }}>
         <div style={A.wrap}>
           <div style={A.eyebrow}>{P.quienesEy}</div>
-          <h2 style={A.h2}>{P.quienesTit}</h2>
           <p style={{ fontSize:18, lineHeight:1.75, color:'var(--ink)', margin:'18px 0 0', maxWidth:820 }}>{P.quienesTxt}</p>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:20, marginTop:28 }}>
             {P.pilares.map(function(h, i){

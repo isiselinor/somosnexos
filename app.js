@@ -5835,9 +5835,7 @@ function EditorialLandingExport() {
     style: A.wrap
   }, React.createElement("div", {
     style: A.eyebrow
-  }, P.quienesEy), React.createElement("h2", {
-    style: A.h2
-  }, P.quienesTit), React.createElement("p", {
+  }, P.quienesEy), React.createElement("p", {
     style: {
       fontSize: 18,
       lineHeight: 1.75,
