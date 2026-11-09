@@ -1,0 +1,7 @@
+{
+  "name": "somosnexos",
+  "private": true,
+  "description": "Sitio de NEXOS. Después de editar cualquier .jsx: npm install (una vez) y npm run compilar, y subir app.js junto con el cambio.",
+  "scripts": { "compilar": "node tools/compilar.js @babel/standalone" },
+  "devDependencies": { "@babel/standalone": "7.29.0" }
+}

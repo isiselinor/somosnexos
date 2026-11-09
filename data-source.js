@@ -64,15 +64,25 @@ window.NEXOS_FIXTURE = null;
     };
   };
 
-  /* Carga el JSON público y vuelve a renderizar. window.__nexosRender lo define cada página. */
+  /* Carga el JSON público y vuelve a renderizar. window.__nexosRender lo define cada página.
+     Para que la página se vea al instante, se guarda una copia de los últimos datos en el navegador
+     de cada visitante: primero se muestra esa copia y, cuando responde el Sheet, se actualiza sola. */
+  const CLAVE = 'nexos-datos-v1';
+  try {
+    const guardado = JSON.parse(localStorage.getItem(CLAVE) || 'null');
+    if (guardado) window.NEXOS_FIXTURE = window.nexosNormalizar(guardado);
+  } catch (e) {}
+
   window.nexosCargar = function () {
     const url = window.NEXOS_ENDPOINT;
     if (!url) return;
     fetch(url).then(function (r) { return r.json(); }).then(function (data) {
       window.NEXOS_FIXTURE = window.nexosNormalizar(data);
+      try { localStorage.setItem(CLAVE, JSON.stringify(data)); } catch (e) {}
       if (typeof window.__nexosRender === 'function') window.__nexosRender();
     }).catch(function (err) { console.error('NEXOS: no se pudo leer ' + url, err); });
   };
 
-  document.addEventListener('DOMContentLoaded', window.nexosCargar);
+  /* Se pide apenas carga este archivo, en paralelo con el resto de la página. */
+  window.nexosCargar();
 })();
