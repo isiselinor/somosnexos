@@ -10,8 +10,44 @@
 */
 (function () {
   const VS = 'proyectos/volver-a-sonar/';
+  const LU = 'proyectos/lumus/';
 
   window.NEXOS_PROYECTOS = [{
+    id: 'lumus', publicado: 'sí', clave: 'Lumus I',
+    nombre: 'Lumus · Etapa I', nombre_en: 'Lumus · Stage I',
+    lema: '', lema_en: '',
+    hito: '15 postes solares de emergencia', hito_en: '15 solar emergency light poles',
+    resumen: 'Diseñamos y fabricamos 15 postes con energía solar para que sean luces de emergencia en ambulatorios y escuelas de Anare, Osma, Todasana, La Sabana y Chuspa.',
+    resumen_en: 'We designed and built 15 solar-powered poles to serve as emergency lights at clinics and schools in Anare, Osma, Todasana, La Sabana and Chuspa.',
+    tarjeta: 'Diseñamos y fabricamos 15 postes con energía solar para que sean luces de emergencia en ambulatorios y escuelas de Anare, Osma, Todasana, La Sabana y Chuspa.',
+    tarjeta_en: 'We designed and built 15 solar-powered poles to serve as emergency lights at clinics and schools in Anare, Osma, Todasana, La Sabana and Chuspa.',
+    historia: 'Varios pueblos de La Guaira tienen cortes eléctricos largos y frecuentes. La fundación Eposak está desarrollando el proyecto Lights On!, con el cual buscan dotar a los ambulatorios y escuelas de Anare, Osma, Todasana, La Sabana y Chuspa con energía solar para que puedan funcionar de forma autónoma.\n\nEste proyecto toma tiempo e implica un desarrollo importante de infraestructura. Es por eso que desde Nexos, y con el apoyo de Reverse Lab y Uno a Uno, diseñamos una solución inmediata que pueda ser útil durante el tiempo que toma el desarrollo del proyecto en su totalidad.',
+    historia_en: 'Several towns in La Guaira have long and frequent power cuts. The Eposak foundation is developing the Lights On! project, which aims to equip the clinics and schools of Anare, Osma, Todasana, La Sabana and Chuspa with solar power so they can run on their own.\n\nThat project takes time and requires major infrastructure work. That is why at Nexos, with the support of Reverse Lab and Uno a Uno, we designed an immediate solution that can be useful while the full project is being developed.',
+    estado: 'En curso', estado_en: 'In progress',
+    ubicacion: 'La Guaira', fecha: 'Agosto 2026', fecha_en: 'August 2026', categoria: '', meta: 0, gastado: 0, actualizado: '',
+    foto: LU + 'img-4504.jpg',
+    detalle: [
+      { tipo: 'cifra', titulo: '15', texto: 'postes con energía solar', texto_en: 'solar-powered poles' },
+      { tipo: 'cifra', titulo: '5', texto: 'pueblos: Anare, Osma, Todasana, La Sabana y Chuspa', texto_en: 'towns: Anare, Osma, Todasana, La Sabana and Chuspa' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-6387.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-6324.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'armado-1.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'armado-2.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'armado-3.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-6315.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-6319.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-6322.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-6337.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-7057.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-4484.jpg' },
+      { tipo: 'foto', grupo: 'Fotos', grupo_en: 'Photos', titulo: '', imagen: LU + 'img-4504.jpg' },
+      { tipo: 'aporte', titulo: 'Dona a NEXOS', titulo_en: 'Donate to NEXOS', grupo: 'Donar', grupo_en: 'Donate', enlace: 'donar',
+        texto: 'Por nuestros canales de siempre. Tu aporte aparece en Transparencia.', texto_en: 'Through our usual channels. Your donation shows up in Transparency.' },
+      { tipo: 'aliado', titulo: 'Eposak', enlace: '' },
+      { tipo: 'aliado', titulo: 'Reverse Lab', enlace: '' },
+      { tipo: 'aliado', titulo: 'Uno a Uno', enlace: '' }
+    ]
+  }, {
     id: 'volver-a-sonar', publicado: 'sí',
     nombre: 'Volver a Sonar', nombre_en: 'Volver a Sonar',
     lema: 'La música también necesita reconstruirse', lema_en: 'Music needs rebuilding too',
@@ -23,6 +59,7 @@
     ubicacion: 'Caracas', fecha: 'Septiembre 2026', fecha_en: 'September 2026', categoria: 'Volver a Sonar', meta: 25000, gastado: 2779, actualizado: '',
     etapa_actual: '2, 3', // etapas en curso: se cambian aquí cuando el proyecto avanza
     foto: VS + 'portada-ensayo.jpg',
+    fotos_sub: 'Del daño a la reparación. Toca una foto para verla en grande.', fotos_sub_en: 'From damage to repair. Tap a photo to enlarge it.',
     historia: 'La sede de la orquesta ocupa un piso alto de la Torre Polar, en Plaza Venezuela. La víspera del sismo dejaron todo listo para ensayar. Cuando la tierra se movió, los contrabajos y la percusión fueron los primeros en caer.',
     historia_en: 'The orchestra is based on a high floor of Torre Polar, in Plaza Venezuela. The day before the earthquake they left everything ready to rehearse. When the ground shook, the double basses and the percussion were the first to fall.',
     destacado: 'Este proyecto atiende lo urgente: reparar lo dañado y equipar a cada músico para que pueda seguir trabajando.',
@@ -227,6 +264,7 @@
           return o.map(function (k) { return m[k]; }).sort(function (a, b) { return b.total - a.total; });
         })(),
         foto: img(p.foto),
+        fotosSub: t(p, 'fotos_sub'),
         historia: t(p, 'historia').split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean),
         destacado: t(p, 'destacado'), notaPresupuesto: t(p, 'nota_presupuesto'),
         cifras: de('cifra').map(function (d) { return { n: t(d, 'titulo'), texto: t(d, 'texto') }; }),

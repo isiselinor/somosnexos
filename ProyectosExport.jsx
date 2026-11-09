@@ -13,7 +13,7 @@ const PR_UI = {
     loQuePaso: 'Lo que pasó',
     procesoTit: 'El proceso, paso a paso', procesoSub: 'Haz click en cada etapa para ver en qué consiste.',
     etapa: 'Etapa', deN: 'de', hecho: 'Hecho', aqui: 'Estamos aquí', proximo: 'Próximo', quien: 'Quién', veras: 'Lo que vas a ver',
-    fotosTit: 'Fotos del proyecto', fotosSub: 'Del daño a la reparación. Toca una foto para verla en grande.',
+    fotosTit: 'Fotos del proyecto', fotosSub: 'Toca una foto para verla en grande.',
     pronto: 'Muy pronto', prontoTxt: 'Estamos tomando las fotos de esta etapa. Las vas a ver aquí.',
     cerrar: 'Cerrar', anterior: 'Foto anterior', siguiente: 'Foto siguiente',
     repartoTit: 'Progreso', repartoSub: 'Vamos de lo más urgente a lo menos urgente.', presupuestados: 'presupuestados', donar: 'Donar', enCurso: 'En curso',
@@ -43,7 +43,7 @@ const PR_UI = {
     loQuePaso: 'What happened',
     procesoTit: 'The process, step by step', procesoSub: 'Click each stage to see what it involves.',
     etapa: 'Stage', deN: 'of', hecho: 'Done', aqui: 'We are here', proximo: 'Next', quien: 'Who', veras: 'What you will see',
-    fotosTit: 'Project photos', fotosSub: 'From damage to repair. Tap a photo to enlarge it.',
+    fotosTit: 'Project photos', fotosSub: 'Tap a photo to enlarge it.',
     pronto: 'Coming soon', prontoTxt: 'We are taking the photos for this stage. You will see them here.',
     cerrar: 'Close', anterior: 'Previous photo', siguiente: 'Next photo',
     repartoTit: 'Progress', repartoSub: 'We go from the most urgent to the least urgent.', presupuestados: 'budgeted', donar: 'Donate', enCurso: 'In progress',
@@ -410,7 +410,7 @@ function ProyectoPage({ id, lang, onClose, onDonate }) {
       {p.fotos.length ? (
         <section style={{ ...PR.wrap, padding: '12px 24px clamp(40px,6vw,56px)', display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '14px 24px' }}>
-            <div><h2 style={PR.h2}>{cerrado ? u.fotosTitZ : u.fotosTit}</h2><p style={PR.sub}>{cerrado ? u.fotosSubZ : u.fotosSub}</p></div>
+            <div><h2 style={PR.h2}>{cerrado ? u.fotosTitZ : u.fotosTit}</h2><p style={PR.sub}>{p.fotosSub || (cerrado ? u.fotosSubZ : u.fotosSub)}</p></div>
             {fotosTab.length > 1 ? <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={function () { moverF(-1); }} aria-label={u.anterior} className="strip-nav">←</button>
               <button onClick={function () { moverF(1); }} aria-label={u.siguiente} className="strip-nav">→</button>
