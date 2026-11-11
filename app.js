@@ -4840,7 +4840,7 @@ function ProyectoCuentas(_ref9) {
       fontWeight: 700,
       color: 'var(--ink)'
     }
-  }, en ? 'See the project and its invoices →' : 'Ver el proyecto y sus facturas →')) : null);
+  }, en ? 'Get to know the project →' : 'Conoce el proyecto →')) : null);
 }
 function Section(_ref0) {
   var id = _ref0.id,

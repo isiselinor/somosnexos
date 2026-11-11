@@ -268,7 +268,7 @@ function ProyectoCuentas({ p, lang, total, abierto, onOpen }) {
             return <ExpenseCategory key={c.categoria} name={en ? (inf.categoriaEN || c.categoria) : c.categoria} description={en ? (inf.descripcionEN || inf.descripcion || '') : (inf.descripcion || '')}
               total={window.prFmt(c.total, lang)} pct={p.gastado ? String(Math.round(c.total / p.gastado * 1000) / 10).replace('.', en ? '.' : ',') : 0} items={items} />;
           }) : <p style={{ margin:0, fontSize:15, color:'var(--muted)' }}>{en ? 'No purchases yet.' : 'Todavía no hay compras.'}</p>}
-          <a href={'#p-' + p.id} onClick={function (e) { e.preventDefault(); onOpen(p.id); }} style={{ display:'inline-block', marginTop:12, fontSize:15, fontWeight:700, color:'var(--ink)' }}>{en ? 'See the project and its invoices →' : 'Ver el proyecto y sus facturas →'}</a>
+          <a href={'#p-' + p.id} onClick={function (e) { e.preventDefault(); onOpen(p.id); }} style={{ display:'inline-block', marginTop:12, fontSize:15, fontWeight:700, color:'var(--ink)' }}>{en ? 'Get to know the project →' : 'Conoce el proyecto →'}</a>
         </div>) : null}
     </div>);
 }
