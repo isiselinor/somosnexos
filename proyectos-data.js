@@ -257,7 +257,7 @@
         ubicacion: String(p.ubicacion || '').trim(), periodo: t(p, 'periodo'), fecha: t(p, 'fecha'),
         meta: num(p.meta), recaudado: num(p.recaudado), actualizado: String(p.actualizado || '').trim(),
         etapasActivas: (String(p.etapa_actual == null ? '' : p.etapa_actual).match(/\d+/g) || ['1']).map(function (n) { return parseInt(n, 10); }),
-        gastado: num(p.gastado), compras: (p.compras || []).map(function (c) { return { concepto: String(c.concepto || '').trim(), monto: num(c.monto), categoria: String(c.categoria || '').trim() }; }),
+        gastado: num(p.gastado), compras: (p.compras || []).map(function (c) { return { concepto: String(c.concepto || '').trim(), monto: num(c.monto), categoria: String(c.categoria || '').trim(), codigo: String(c.codigo || '').trim(), facturas: Array.isArray(c.facturas) ? c.facturas.filter(function (u) { return /^https:\/\/drive\.google\.com\//.test(String(u)); }) : [] }; }),
         porCategoria: (function () {
           const m = {}, o = [];
           (p.compras || []).forEach(function (c) { const k = String(c.categoria || '').trim() || (en ? 'Other' : 'Otros'); if (!m[k]) { m[k] = { categoria: k, total: 0, n: 0 }; o.push(k); } m[k].total += num(c.monto); m[k].n++; });

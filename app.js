@@ -4632,12 +4632,51 @@ function FaqRow(_ref7) {
     }
   }, a) : null);
 }
-function ProyectoCuentas(_ref8) {
-  var p = _ref8.p,
-    lang = _ref8.lang,
-    total = _ref8.total,
-    abierto = _ref8.abierto,
-    onOpen = _ref8.onOpen;
+function GastoConFactura(_ref8) {
+  var it = _ref8.it,
+    en = _ref8.en;
+  var fs = it.facturas || [];
+  return React.createElement("span", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '4px 10px',
+      alignItems: 'baseline'
+    }
+  }, it.codigo ? React.createElement("span", {
+    style: {
+      fontFamily: 'ui-monospace,Menlo,monospace',
+      fontSize: 12,
+      fontWeight: 600,
+      color: 'var(--accent-text)',
+      whiteSpace: 'nowrap'
+    }
+  }, it.codigo) : null, React.createElement("span", {
+    style: {
+      minWidth: 0
+    }
+  }, it.concepto), fs.map(function (u, i) {
+    return React.createElement("a", {
+      key: u,
+      href: u,
+      target: "_blank",
+      rel: "noopener",
+      style: {
+        color: 'var(--ink)',
+        fontWeight: 700,
+        whiteSpace: 'nowrap',
+        textDecoration: 'underline',
+        textUnderlineOffset: 3
+      }
+    }, (en ? 'See invoice' : 'Ver factura') + (fs.length > 1 ? ' ' + (i + 1) : '') + ' ↗');
+  }));
+}
+function ProyectoCuentas(_ref9) {
+  var p = _ref9.p,
+    lang = _ref9.lang,
+    total = _ref9.total,
+    abierto = _ref9.abierto,
+    onOpen = _ref9.onOpen;
   var _React$useState9 = React.useState(!!abierto),
     _React$useState0 = _slicedToArray(_React$useState9, 2),
     o = _React$useState0[0],
@@ -4767,7 +4806,10 @@ function ProyectoCuentas(_ref8) {
       return (it.categoria || '') === c.categoria || !it.categoria && c.categoria === (en ? 'Other' : 'Otros');
     }).map(function (it) {
       return {
-        concepto: it.concepto,
+        concepto: React.createElement(GastoConFactura, {
+          it: it,
+          en: en
+        }),
         monto: dec(it.monto)
       };
     });
@@ -4800,14 +4842,14 @@ function ProyectoCuentas(_ref8) {
     }
   }, en ? 'See the project and its invoices →' : 'Ver el proyecto y sus facturas →')) : null);
 }
-function Section(_ref9) {
-  var id = _ref9.id,
-    eyebrow = _ref9.eyebrow,
-    titulo = _ref9.titulo,
-    lead = _ref9.lead,
-    leadWide = _ref9.leadWide,
-    children = _ref9.children,
-    tone = _ref9.tone;
+function Section(_ref0) {
+  var id = _ref0.id,
+    eyebrow = _ref0.eyebrow,
+    titulo = _ref0.titulo,
+    lead = _ref0.lead,
+    leadWide = _ref0.leadWide,
+    children = _ref0.children,
+    tone = _ref0.tone;
   var solid = tone === 'coral' ? 'var(--nexos-coral)' : null;
   var light = !!solid;
   return React.createElement("section", {

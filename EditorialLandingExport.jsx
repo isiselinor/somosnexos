@@ -220,6 +220,19 @@ function FaqRow({ q, a, open }) {
   );
 }
 
+// Un gasto con su código y el enlace a su factura (si el equipo la cargó en el Sheet).
+function GastoConFactura({ it, en }) {
+  const fs = it.facturas || [];
+  return (<span style={{ display:'flex', flexWrap:'wrap', gap:'4px 10px', alignItems:'baseline' }}>
+    {it.codigo ? <span style={{ fontFamily:'ui-monospace,Menlo,monospace', fontSize:12, fontWeight:600, color:'var(--accent-text)', whiteSpace:'nowrap' }}>{it.codigo}</span> : null}
+    <span style={{ minWidth:0 }}>{it.concepto}</span>
+    {fs.map(function (u, i) {
+      return <a key={u} href={u} target="_blank" rel="noopener" style={{ color:'var(--ink)', fontWeight:700, whiteSpace:'nowrap', textDecoration:'underline', textUnderlineOffset:3 }}>
+        {(en ? 'See invoice' : 'Ver factura') + (fs.length > 1 ? ' ' + (i + 1) : '') + ' ↗'}</a>;
+    })}
+  </span>);
+}
+
 function ProyectoCuentas({ p, lang, total, abierto, onOpen }) {
   const [o, setO] = React.useState(!!abierto);
   const en = lang === 'EN';
@@ -251,7 +264,7 @@ function ProyectoCuentas({ p, lang, total, abierto, onOpen }) {
             const inf = info(c.categoria);
             const dec = function (n) { return (Number(n) || 0).toLocaleString(en ? 'en-US' : 'es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
             const items = p.compras.filter(function (it) { return (it.categoria || '') === c.categoria || (!it.categoria && c.categoria === (en ? 'Other' : 'Otros')); })
-              .map(function (it) { return { concepto: it.concepto, monto: dec(it.monto) }; });
+              .map(function (it) { return { concepto: <GastoConFactura it={it} en={en} />, monto: dec(it.monto) }; });
             return <ExpenseCategory key={c.categoria} name={en ? (inf.categoriaEN || c.categoria) : c.categoria} description={en ? (inf.descripcionEN || inf.descripcion || '') : (inf.descripcion || '')}
               total={window.prFmt(c.total, lang)} pct={p.gastado ? String(Math.round(c.total / p.gastado * 1000) / 10).replace('.', en ? '.' : ',') : 0} items={items} />;
           }) : <p style={{ margin:0, fontSize:15, color:'var(--muted)' }}>{en ? 'No purchases yet.' : 'Todavía no hay compras.'}</p>}

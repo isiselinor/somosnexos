@@ -23,7 +23,7 @@ const TASAS_DEFAULT = { arsPorUsd: 1550, bsPorUsd: 800, usdPorEur: 1.138 };
 const TASAS_HOJA = 'Tasas';
 
 // ---------- GASTOS (pestaña aparte) ----------
-//   A=Responsable | B=Descripción | C=Monto Bs | D=Monto USD | E=Fecha | F=Categoría | G=Proyecto
+//   A=Responsable | B=Descripción | C=Monto Bs | D=Monto USD | E=Fecha | F=Categoría | G=Proyecto | H=Código | I=Factura (ver Facturas.gs)
 const GASTOS = { hoja: 'gastos', filaInicio: 2, colConcepto: 2, colBs: 3, colUsd: 4, colFecha: 5, colCategoria: 6, colProyecto: 7 };
 const CAT_DEFAULT = 'Sin categoría';
 const PROY_DEFAULT = 'Sin proyecto';
@@ -206,13 +206,15 @@ function leerEgresos_(hist) {
   if (ult < ini) return egresos;
 
   var n = ult - ini + 1;
-  var ancho = GASTOS.colProyecto - GASTOS.colConcepto + 1;
+  var ancho = FACT.colFactura - GASTOS.colConcepto + 1;   // hasta la columna I (Factura)
   var vals = hoja.getRange(ini, GASTOS.colConcepto, n, ancho).getValues();
   var iBs    = GASTOS.colBs - GASTOS.colConcepto;
   var iUsd   = GASTOS.colUsd - GASTOS.colConcepto;
   var iFecha = GASTOS.colFecha - GASTOS.colConcepto;
   var iCat   = GASTOS.colCategoria - GASTOS.colConcepto;
   var iProy  = GASTOS.colProyecto - GASTOS.colConcepto;
+  var iCod   = FACT.colCodigo - GASTOS.colConcepto;
+  var iFact  = FACT.colFactura - GASTOS.colConcepto;
   for (var i = 0; i < n; i++) {
     var concepto = String(vals[i][0]).trim();
     var clave = concepto.toLowerCase();
@@ -227,7 +229,9 @@ function leerEgresos_(hist) {
     if (enUsd === 0) continue;
     var categoria = String(vals[i][iCat]).trim() || CAT_DEFAULT;
     var proyecto = String(vals[i][iProy] || '').trim() || PROY_DEFAULT;
-    egresos.push({ concepto: concepto, monto: redondear2_(enUsd), bs: bs, usd: usd, categoria: categoria, proyecto: proyecto });
+    var codigo = String(vals[i][iCod] || '').trim();
+    var facturas = factConfig_(proyecto) ? factEnlaces_(vals[i][iFact]) : [];
+    egresos.push({ concepto: concepto, monto: redondear2_(enUsd), bs: bs, usd: usd, categoria: categoria, proyecto: proyecto, codigo: codigo, facturas: facturas });
   }
   return egresos;
 }
@@ -300,7 +304,10 @@ function agruparPorProyecto_(egresos) {
     if (!mapa[e.proyecto]) { mapa[e.proyecto] = { proyecto: e.proyecto, total: 0, gastos: 0, items: [] }; orden.push(e.proyecto); }
     mapa[e.proyecto].total += e.monto;
     mapa[e.proyecto].gastos++;
-    mapa[e.proyecto].items.push({ concepto: e.concepto, monto: e.monto, categoria: e.categoria });
+    var it = { concepto: e.concepto, monto: e.monto, categoria: e.categoria };
+    if (e.codigo) it.codigo = e.codigo;
+    if (e.facturas && e.facturas.length) it.facturas = e.facturas;
+    mapa[e.proyecto].items.push(it);
   });
   var arr = orden.map(function (k) { mapa[k].total = redondear2_(mapa[k].total); return mapa[k]; });
   arr.sort(function (a, b) { return b.total - a.total; });
@@ -391,6 +398,9 @@ function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('💸 Donaciones')
     .addItem('Actualizar resumen ahora', 'actualizarTodo')
+    .addSeparator()
+    .addItem('Asignar códigos y ordenar facturas', 'asignarCodigosYFacturas')
+    .addItem('Activar ordenado automático (una sola vez)', 'activarOrdenadoAutomatico')
     .addToUi();
 }
 
